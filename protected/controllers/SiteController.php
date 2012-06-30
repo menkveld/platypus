@@ -27,9 +27,11 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		if(Yii::app()->user->isGuest) {
+			$this->actionLogin();
+		} else {
+			$this->render('index');
+		}
 	}
 
 	/**
@@ -71,6 +73,8 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
+		$this->layout = '//layouts/no-nav';	// Render the view without the navigation bar
+		
 		$model=new LoginForm;
 
 		// if it is ajax validation request

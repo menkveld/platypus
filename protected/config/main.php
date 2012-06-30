@@ -1,8 +1,4 @@
 <?php
-
-// uncomment the following to define a path alias
-// Yii::setPathOfAlias('local','path/to/local-folder');
-
 // Setup path aliases for the Parallel library
 Yii::setPathOfALias('server_root', 'D:\wamp\www');
 Yii::setPathOfAlias('parallel', Yii::getPathOfAlias('server_root.parallel'));
@@ -13,10 +9,12 @@ Yii::setPathOfAlias('vendors', Yii::getPathOfAlias('parallel.vendors'));
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Platypus',
-	'theme' => 'bootstrap',
+	'theme' => 'bootstrap',	// Twitter Bootstap Theme
 
 	// preloading 'log' component
-	'preload'=>array('log'),
+	'preload'=>array('log', 		// System loggin component
+					 'bootstrap'	// Twitter Bootstrap CSS Framework Components
+			),
 
 	// autoloading model and component classes
 	'import'=>array(
@@ -25,15 +23,10 @@ return array(
 	),
 
 	'modules'=>array(
-		// uncomment the following to enable the Gii tool
-		/*
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'Enter Your Password Here',
-			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
+		// Person Module
+		'person' => array(
+			'class' => 'parallel\yii\modules\person\PersonModule',
 		),
-		*/
 	),
 
 	// application components
@@ -42,30 +35,22 @@ return array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
 		),
-		// uncomment the following to enable URLs in path-format
-		/*
+
+		// URL's in path format
 		'urlManager'=>array(
 			'urlFormat'=>'path',
-			'rules'=>array(
-				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
-				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
-				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
-			),
+			'showScriptName' => false,
 		),
-		*/
+
+		// Connect to the database
 		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
-		// uncomment the following to use a MySQL database
-		/*
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=testdrive',
+			'connectionString' => 'mysql:host=localhost;dbname=platypus',
 			'emulatePrepare' => true,
-			'username' => 'root',
-			'password' => '',
+			'username' => 'parallel',
+			'password' => 'dogfood2',
 			'charset' => 'utf8',
 		),
-		*/
+
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
@@ -77,14 +62,35 @@ return array(
 					'class'=>'CFileLogRoute',
 					'levels'=>'error, warning',
 				),
-				// uncomment the following to show log messages on web pages
-				/*
 				array(
 					'class'=>'CWebLogRoute',
+					'levels'=>'error, warning, info, trace',
+					'showInFireBug' => true,
+					'categories' => 'parallel.*',
 				),
-				*/
 			),
 		),
+		
+		/*
+		 * Twitter Bootstrap CSS framework - http://twitter.github.com/bootstrap/
+		 */
+		'bootstrap'=>array(
+			'class' => 'parallel.yii.extensions.bootstrap.components.Bootstrap',		
+		),
+
+		/*
+		 * Create auto loader for Zend Framework classes
+		*/
+		'zendAutoloader'=>array(
+				'class'=>'parallel\yii\config\ZendFrameworkLoader',
+		),
+		
+		/*
+		 * Create the Parallel config component to be able to read/write system configuration
+		*/
+		'config'=>array(
+				'class'=>'parallel\yii\config\Config',
+		),			
 	),
 
 	// application-level parameters that can be accessed
