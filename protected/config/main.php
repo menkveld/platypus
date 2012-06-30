@@ -3,11 +3,17 @@
 // uncomment the following to define a path alias
 // Yii::setPathOfAlias('local','path/to/local-folder');
 
+// Setup path aliases for the Parallel library
+Yii::setPathOfALias('server_root', 'D:\wamp\www');
+Yii::setPathOfAlias('parallel', Yii::getPathOfAlias('server_root.parallel'));
+Yii::setPathOfAlias('vendors', Yii::getPathOfAlias('parallel.vendors'));
+
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'Platypus',
+	'theme' => 'bootstrap',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -86,5 +92,9 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+		'majorVersion' => 0,
+		'minorVersion' => 1,
+		'codeStatus' => 'alpha',
+		'slogan' => 'Go out and sell your stuff!',				
 	),
 );
