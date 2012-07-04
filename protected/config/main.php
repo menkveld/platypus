@@ -23,6 +23,11 @@ return array(
 	),
 
 	'modules'=>array(
+		// User Module
+		'user' => array(
+			'class' => 'parallel\yii\modules\user\UserModule',
+		),
+			
 		// Person Module
 		'person' => array(
 			'class' => 'parallel\yii\modules\person\PersonModule',
@@ -33,10 +38,10 @@ return array(
 	'components'=>array(
 		'user'=>array(
 			// enable cookie-based authentication
-			'allowAutoLogin'=>true,
+			'allowAutoLogin'=>false,	// Auto Login not allowed for security reasons
 		),
 
-		// URL's in path format
+		// Pretty URL's in path format
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'showScriptName' => false,
@@ -51,10 +56,13 @@ return array(
 			'charset' => 'utf8',
 		),
 
+		// Error handling
 		'errorHandler'=>array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
+			
+		// System Message Logging
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(

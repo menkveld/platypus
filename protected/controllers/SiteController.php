@@ -48,6 +48,7 @@ class SiteController extends parallel\yii\Controller
 	public function actionLogin()
 	{
 		$this->layout = '//layouts/no-nav';	// Render the view without the navigation bar
+		//Yii::app()->language = 'af';
 		
 		$model=new LoginForm;
 

@@ -53,10 +53,10 @@
 		            'items'=>array(
 		            	'---',
 		                array('label'=>Yii::app()->user->name, 'url'=>'#', 'items'=>array(
-		                    array('label'=>'Profile', 'url'=>'#'),
-		                    array('label'=>'Settings', 'url'=>'#'),
+		                    array('label'=>Yii::t('site', 'Profile'), 'url'=>'/user/profile'),
+		                    array('label'=>Yii::t('site', 'Settings'), 'url'=>'#'),
 		                		'---',
-		                    array('label'=>'Log out', 'url'=>array('/site/logout')),
+		                    array('label'=>Yii::t('site', 'Log out'), 'url'=>array('/site/logout')),
 		                )),
 		            ),
 		        ),
@@ -73,7 +73,7 @@
 		
 		<footer class="footer"style=" margin-left: auto; margin-right: auto; text-align: center;">
 				<hr>
-				<p style="margin-top: -15px"><h6>Copyright &copy; <?php echo date('Y'); ?> by <a href="mailto:anton.menkveld@gmail.com">Anton R. Menkveld</a> | <?php echo Yii::powered(); ?></h6></p>
+				<p style="margin-top: -15px"><h6><?php echo Yii::t('site', 'Copyright')?> &copy; <?php echo date('Y'); ?> by <a href="mailto:anton.menkveld@gmail.com">Anton R. Menkveld</a> | <?php echo Yii::powered(); ?></h6></p>
 		</footer>
 	</body>
 </html>
