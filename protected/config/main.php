@@ -1,6 +1,6 @@
 <?php
 // Setup path aliases for the Parallel library
-Yii::setPathOfALias('server_root', 'D:\wamp\www');
+Yii::setPathOfALias('server_root', 'C:\wamp\www');
 Yii::setPathOfAlias('parallel', Yii::getPathOfAlias('server_root.parallel'));
 Yii::setPathOfAlias('vendors', Yii::getPathOfAlias('parallel.vendors'));
 
@@ -26,12 +26,7 @@ return array(
 		// User Module
 		'user' => array(
 			'class' => 'parallel\yii\modules\user\UserModule',
-		),
-			
-		// Person Module
-		'person' => array(
-			'class' => 'parallel\yii\modules\person\PersonModule',
-		),
+		),			
 	),
 
 	// application components
@@ -45,6 +40,17 @@ return array(
 		'urlManager'=>array(
 			'urlFormat'=>'path',
 			'showScriptName' => false,
+			'rules' => array(
+				// REST Interface - TBD: Create Rules class to keep these centrally
+				array('<controller>/rest/read', 'pattern' => 'rest/<controller:\w+>/<id:\w+>', 'verb' => 'GET'),
+				array('<controller>/rest/read<subset>', 'pattern' => 'rest/<controller:\w+>/<id:\w+>/<subset:\w+>', 'verb' => 'GET'),
+				array('<controller>/rest/update<subset>', 'pattern' => 'rest/<controller:\w+>/<id:\w+>/<subset:\w+>', 'verb' => 'POST'),
+					
+				// Route request to controllers to the default controller without the need to have /default/ in the url
+				// site must be excluded as the only controller not contained in a module
+				array('site/<action>', 'pattern' => 'site/<action:\w+>', 'verb' => 'GET'),
+				array('<controller>/default/<action>', 'pattern' => '<controller:\w+>/<action:\w+>', 'verb' => 'GET'),
+			),				
 		),
 
 		// Connect to the database
@@ -83,7 +89,13 @@ return array(
 		 * Twitter Bootstrap CSS framework - http://twitter.github.com/bootstrap/
 		 */
 		'bootstrap'=>array(
-			'class' => 'parallel.yii.extensions.bootstrap.components.Bootstrap',		
+			'class' => 'parallel.yii.extensions.bootstrap.components.Bootstrap',
+			// In order to better control what is loaded, CSS files will be included
+			// by the layout
+			'coreCss' => false,
+			'responsiveCss' => false,
+			'yiiCss' => false,
+			'enableJS' => true,
 		),
 
 		/*
@@ -98,17 +110,17 @@ return array(
 		*/
 		'config'=>array(
 				'class'=>'parallel\yii\config\Config',
-		),			
+		),
 	),
 
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
-		'adminEmail'=>'webmaster@example.com',
+		'adminEmail'=>'admin@platypus-platform.com',
 		'majorVersion' => 0,
 		'minorVersion' => 1,
 		'codeStatus' => 'alpha',
-		'slogan' => 'Go out and sell your stuff!',				
+		'slogan' => 'Systemize or DIE!',				
 	),
 );

@@ -10,9 +10,9 @@
 		<!-- Le styles -->
 	    <link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap-theme.css" rel="stylesheet">
 		<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap.min.css" rel="stylesheet">
-		<link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap-responsive.css" rel="stylesheet">
-	
-		<!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <link href="<?php echo Yii::app()->theme->baseUrl; ?>/css/bootstrap-responsive.css" rel="stylesheet">
+
+	    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
 		<!--[if lt IE 9]>
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -34,10 +34,9 @@
 		        array(
 		            'class'=>'bootstrap.widgets.BootMenu',
 		            'items'=>array(
-		                array('label'=>'Home', 'url'=>'#', 'active'=>true),
-		                array('label'=>'Link', 'url'=>'#'),
-		                array('label'=>'Dropdown', 'url'=>'#', 'items'=>array(
-		                    array('label'=>'Action', 'url'=>'#'),
+		                array('label'=>'Dashboard', 'url'=>Yii::app()->request->baseUrl, 'active'=>true),
+		                array('label'=>'Applications', 'url'=>'#', 'items'=>array(
+		                    array('label'=>'Instances', 'url'=>'#'),
 		                    array('label'=>'Another action', 'url'=>'#'),
 		                    array('label'=>'Something else here', 'url'=>'#'),
 		                    '---',
@@ -53,16 +52,17 @@
 		            'items'=>array(
 		            	'---',
 		                array('label'=>Yii::app()->user->name, 'url'=>'#', 'items'=>array(
-		                    array('label'=>Yii::t('site', 'Profile'), 'url'=>'/user/profile'),
-		                    array('label'=>Yii::t('site', 'Settings'), 'url'=>'#'),
+		                    array('label'=>Yii::t('site', 'Profile'), 'url'=>Yii::app()->request->baseUrl.'/user'),
 		                		'---',
 		                    array('label'=>Yii::t('site', 'Log out'), 'url'=>array('/site/logout')),
 		                )),
+		                array('label'=>Yii::t('site', 'Settings'), 'url'=>'#'),
 		            ),
 		        ),
 		    	'<form class="navbar-search pull-right" action=""><input type="text" class="search-query span2" placeholder="Search"></form>',	
 		    ),
 		)); ?>
+
 		<?php $this->widget('bootstrap.widgets.BootBreadcrumbs', array(
     		'links'=>$this->breadcrumbs,
 		)); ?>

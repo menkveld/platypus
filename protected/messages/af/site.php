@@ -1,7 +1,7 @@
 <?php
 return array(
 		'Username' => 'Gebruikers Naam',
-		'Email' => 'E-pos',
+		'Email' => 'Epos',
 		'Password' => 'Wagwoord',
 		'Remember me next time' => 'Onthou my volgende keer',
 		'Login' => 'Teken aan',
@@ -10,5 +10,6 @@ return array(
 		'Profile' => 'Profiel',
 		'Search' => 'Soek',
 		'Copyright' => 'Kopiereg',
+		'Save' => 'Stoor',
 		
 );

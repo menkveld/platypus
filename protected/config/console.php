@@ -1,6 +1,6 @@
 <?php
 // Setup path aliases for the Parallel library
-Yii::setPathOfALias('server_root', 'D:\wamp\www');
+Yii::setPathOfALias('server_root', 'C:\wamp\www');
 Yii::setPathOfAlias('parallel', Yii::getPathOfAlias('server_root.parallel'));
 Yii::setPathOfAlias('vendors', Yii::getPathOfAlias('parallel.vendors'));
 
